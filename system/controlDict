@@ -1,0 +1,145 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     sprayFoam;
+
+startFrom       latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         0.00070005; //1.5e-3;
+
+deltaT          5e-8; //1e-7;
+
+writeControl    adjustableRunTime;
+
+writeInterval   5e-5;
+
+purgeWrite      0;
+
+writeFormat     binary;
+
+writePrecision  9;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   9;
+
+adjustTimeStep  no; //yes;
+
+maxCo           0.5;
+
+maxDeltaT	1e-6;
+
+runTimeModifiable yes;
+
+DebugSwitches
+{
+    SolverPerformance   0;
+}
+
+// Enabling collated format
+
+
+
+libs
+(
+        "libchemistryModel_DLB.so"
+        "libODE_DLB.so"
+        "$FOAM_CASE/constant/foam_mech/libc_pyjac.so"
+        "libconeCylinderInjection.so"
+);
+
+
+functions
+{ /*
+    writeObjectsRho
+    {
+        type        writeObjects;
+        libs        ("libutilityFunctionObjects.so");
+        objects     ( rho );
+        writeOption autoWrite;
+        executeControl  adjustableRunTime;
+        executeInterval 5e-8;
+        writeControl    adjustableRunTime;
+        writeInterval   5e-8;
+    }
+
+    Integral_Qdot
+    {
+        libs            ("libfieldFunctionObjects.so");   // SHOULD BE THE SAME AS functionObjectLibs
+        type            volFieldValue;
+        // Mandatory entries (runtime modifiable)
+        fields          (Qdot);
+        operation	volIntegrate;
+        regionType	all;
+        writeFields     false;
+        executeControl  adjustableRunTime;
+        executeInterval $writeInterval;
+        writeControl    adjustableRunTime;
+        writeInterval   $writeInterval;
+    }
+
+    fieldAverages
+    {
+        type            fieldAverage;
+        libs            ("libfieldFunctionObjects.so");
+        writeControl    writeTime;
+        timeStart       0.9e-3;
+        timeEnd         1.5e-3;
+        resetOnRestart  false;
+        resetOnOutput false;
+        fields
+        (
+            OH
+            {
+                mean        on;
+                prime2Mean  on;
+                base        time;
+            }
+
+            CH2O
+            {
+                mean        on;
+                prime2Mean  on;
+                base        time;
+            }
+
+            U
+            {
+                mean        on;
+                prime2Mean  on;
+                base        time;
+            }
+
+            C12H26
+            {
+                mean        on;
+                prime2Mean  on;
+                base        time;
+            }
+        );
+    }
+
+    */
+}
+
+// ************************************************************************* //
