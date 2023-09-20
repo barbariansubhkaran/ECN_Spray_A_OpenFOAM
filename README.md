@@ -9,5 +9,6 @@
 
 
 + Based on the work of :-
-
+```
 Computational fluid dynamics studies on spray assisted combustion of alternative energy carries by Mahmoud Gadalla
+```
